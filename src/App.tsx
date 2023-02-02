@@ -8,7 +8,7 @@ import Homepage from "./pages/homepage";
 
 
 function App() {
-  return <Register />;
+  return <Login />;
 }
 
 export default App;
