@@ -1,0 +1,133 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container .group1 {
+  position: relative;
+  height: 150vh;
+  width: 150vh;
+  /* background-color: rgb(255, 0, 0); */
+  transform: translate(-62.6%, -45.6%);
+  z-index: 0;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.container .group1 img {
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  right: 12%;
+  bottom: 29%;
+  z-index: 3;
+}
+
+img:hover {
+  animation: backwards;
+}
+
+.container .group1 .block1 {
+  position: absolute;
+  height: 70.71%;
+  width: 70.71%;
+  background-color: var(--purple-light);
+  z-index: 2;
+
+  transform: rotate(45deg);
+  border-radius: 0 10px 0 0;
+}
+
+.container .group1 .block2 {
+  position: absolute;
+  height: 70.71%;
+  width: 70.71%;
+  background: var(--white);
+  transform: rotate(45deg) translate(90px, 115px);
+  z-index: 1;
+  border-radius: 0 10px 0 0;
+}
+
+.container .bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  width: 465px;
+  height: 105px;
+  background-color: var(--white);
+  top: calc(50% - 52px);
+  left: calc(50% - 232.5px);
+  border-radius: 10px;
+}
+
+.container .bar button {
+  width: 180px;
+  height: 50px;
+  background: var(--purple-dark);
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--white);
+
+  border-radius: 3px;
+  box-shadow: 7px 6px 4px 0px #302bb5b3;
+
+  transition: 0.2s ease-out;
+}
+
+.container .bar button:hover {
+  background-color: var(--purple-light);
+}
+
+.container .bar button:active {
+  box-shadow: none;
+
+}
+
+.container .group2 {
+  position: relative;
+  height: 150vh;
+  width: 150vh;
+  /* background-color: rgb(255, 0, 0); */
+  transform: translate(94.9%, -87%);
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .group2 img {
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  left: 10%;
+  top: 26%;
+  z-index: 3;
+}
+
+.container .group2 .block1 {
+  position: absolute;
+  height: 70.71%;
+  width: 70.71%;
+
+  background-color: var(--purple-light);
+  z-index: 2;
+
+  transform: rotate(45deg);
+  border-radius: 0 0 0 10px;
+}
+
+.container .group2 .block2 {
+  position: absolute;
+  height: 70.71%;
+  width: 70.71%;
+  background: var(--white);
+  transform: rotate(45deg) translate(-90px, -115px);
+
+  z-index: 1;
+
+  border-radius: 0 0 0 10px;
+}
