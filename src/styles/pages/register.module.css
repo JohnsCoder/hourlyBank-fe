@@ -24,12 +24,17 @@
   background: none;
   font-size: 64px;
   transition: .2s;
+  line-height: 0;
 }
 
 .container button:first-child:hover {
   background: rgb(214, 214, 214);
   border-radius: 6px;
 
+}
+
+.container button:first-child:active {
+  background-color: rgb(166, 166, 166);
 }
 
 .container input {

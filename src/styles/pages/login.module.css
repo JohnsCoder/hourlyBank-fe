@@ -26,6 +26,7 @@
   font-size: 64px;
 
   transition: .2s;
+  line-height: 0;
 
 }
 
@@ -34,6 +35,11 @@
   border-radius: 6px;
 
 }
+
+.container button:first-child:active {
+  background-color: rgb(166, 166, 166);
+}
+
 
 .container input {
   box-sizing: border-box;
