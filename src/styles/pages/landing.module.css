@@ -136,6 +136,18 @@
 @media (max-width: 1324px) {
   .group-1 {
     bottom: 40%;
+    right: -1%;
+  }
+
+  .group-2 {
+    top: 40%;
+    left: -1%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .group-1 {
+    bottom: 40%;
     right: -5%;
   }
 
