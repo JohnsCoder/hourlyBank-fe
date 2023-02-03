@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/pages/homepage.module.css";
 import Card from "../components/card";
-import {CreateDialog, EditDialog} from "../components/dialog";
+import {ConfirmWindow, CreateDialog, EditDialog} from "../components/dialog";
 export default function Homepage() {
   return (
     <div className={styles.container}>
@@ -27,7 +27,7 @@ export default function Homepage() {
           Deleloped by <a href="">JohnsCoder</a>
         </span>
       </footer>
-      {/* <CreateDialog/> */}
+      {/* <ConfirmWindow/> */}
     </div>
   );
 }

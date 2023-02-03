@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+button {
+  cursor: pointer;
+
+}
+
 :root {
   --black: #000000;
   --white: #eaeaea;

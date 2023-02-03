@@ -1,14 +1,12 @@
- input:hover {
-     background: #f3f3f3;
-   }
+input:hover {
+  background: #f3f3f3;
+}
 
 .container-create {
   box-sizing: border-box;
   position: absolute;
   height: 516px;
   width: 606px;
-  left: calc(50% - 303px);
-  top: 192px;
   background: var(--purple);
 
   border-radius: 12px;
@@ -36,8 +34,7 @@
 }
 
 .container-create input[type="text"]:hover {
-     background: #5651ef;
-
+  background: #5651ef;
 }
 .date {
   display: flex;
@@ -58,6 +55,7 @@
   font-weight: 500;
   line-height: 34px;
   margin-bottom: 22px;
+  color: var(--white);
 }
 
 .date div div {
@@ -67,7 +65,7 @@
   width: fit-content;
 }
 .date div div:hover {
-     background-color: #2b27a4;
+  background-color: #2b27a4;
 }
 .date input[type="date"] {
   text-align: center;
@@ -110,8 +108,6 @@
   position: absolute;
   height: 516px;
   width: 606px;
-  left: calc(50% - 303px);
-  top: 192px;
   background: var(--purple);
 
   border-radius: 12px;
@@ -157,7 +153,7 @@
 }
 
 .hour div div:hover {
-     background-color: #2b27a4;
+  background-color: #2b27a4;
 }
 
 .hour input[type="time"] {
@@ -222,8 +218,7 @@ option {
 }
 
 .container-edit input[type="text"]:hover {
-     background: #5651ef;
-
+  background: #5651ef;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
@@ -237,4 +232,37 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+.container-confirm {
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  background: var(--purple);
+
+  border-radius: 12px;
+
+  border: 6px solid var(--black);
+  flex-direction: column;
+  align-items: center;
+  padding: 28px;
+  height: 216px;
+  width: 590px;
+  justify-content: space-between;
+}
+
+.container-confirm div:nth-child(1) {
+  background-color: var(--purple-darkerst);
+  padding: 10px;
+  width: max-content;
+  border-radius: 9px;
+}
+
+.container-confirm p {
+  font-family: Inter;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 39px;
+  letter-spacing: 0em;
+  text-align: left;
 }

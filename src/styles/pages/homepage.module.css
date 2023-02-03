@@ -3,6 +3,8 @@
   flex-direction: column;
   height: 100vh;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 header {
@@ -79,9 +81,8 @@ hr {
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 13px 68px;
-  margin: 20px 0;
-  width: 63%;
+  gap: 20px 56px;
+  margin: 15px 0;
   height: 100%;
 }
 

@@ -72,4 +72,19 @@ function EditDialog() {
   );
 }
 
-export { CreateDialog, EditDialog };
+function ConfirmWindow() {
+  return (
+    <div className={styles["container-confirm"]}>
+      <div>
+      <p>Are you sure about finish this job?</p>
+
+      </div>
+      <div className={styles.buttons}>
+        <button>Cancel</button>
+        <button>Confirm</button>
+      </div>
+    </div>
+  );
+}
+
+export { CreateDialog, EditDialog, ConfirmWindow };

@@ -11,6 +11,7 @@ export default function Card() {
         vehicula. Quisque scelerisque est ut dignissim viverra. Vestibulum ac
         ultrices lectus. Nunc venenatis.
       </p>
+      <button className={styles.confirm}>✔</button>
     </div>
   );
 }
