@@ -9,17 +9,12 @@
   transition: all 0.2s;
   overflow: hidden;
   cursor: pointer;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .card:hover {
-  /* box-shadow: rgb(48 43 181 / 67%) 7px 6px 13px; */
   background: var(--black);
 }
-
-/* .card:active {
-  box-shadow: none;
-} */
 
 .card h1 {
   color: var(--green);
@@ -64,11 +59,11 @@
 }
 
 .confirm:hover {
-  background-color: #00ff73;
   box-shadow: rgb(0 255 117 / 48%) 0px 0px 131px 97px;
   opacity: 1 !important;
 }
 
 .confirm:active {
+  background-color: #000000;
   box-shadow: none;
 }

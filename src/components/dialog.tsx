@@ -1,9 +1,25 @@
 import React from "react";
 import styles from "../styles/components/dialog.module.css";
+import { Property as CSS } from "csstype/index.js";
 
-function CreateDialog() {
+type props = {
+  style: {
+    create: CSS.Display;
+    edit: CSS.Display;
+    confirm: CSS.Display;
+  };
+  close: () => void;
+};
+
+function CreateDialog({ style, close }: props) {
   return (
-    <div className={styles["container-create"]}>
+    <div
+      className={styles["container-create"]}
+      style={{
+        display: style.create,
+        top: `${window.pageYOffset + 231}px`,
+      }}
+    >
       <input type="text" placeholder="Title..." />
       <div className={styles.date}>
         <div className={styles["date-start"]}>
@@ -23,16 +39,22 @@ function CreateDialog() {
       </div>
       <input type="text" placeholder="Description..." />
       <div className={styles.buttons}>
-        <button>Cancel</button>
-        <button>Confirm</button>
+        <button onClick={() => close()}>Cancel</button>
+        <button onClick={() => close()}>Confirm</button>
       </div>
     </div>
   );
 }
 
-function EditDialog() {
+function EditDialog({ style, close }: props) {
   return (
-    <div className={styles["container-edit"]}>
+    <div
+      className={styles["container-edit"]}
+      style={{
+        display: style.edit,
+        top: `${window.pageYOffset + 231}px`,
+      }}
+    >
       <div className={styles.hour}>
         <div className={styles["start-hour"]}>
           <label>Horario de Inicio:</label>
@@ -64,24 +86,29 @@ function EditDialog() {
       <input type="text" placeholder="Oque fiz hoje?" />
 
       <div className={styles.buttons}>
-        <button>Cancel</button>
-        <button>Delete</button>
-        <button>Confirm</button>
+        <button onClick={() => close()}>Cancel</button>
+        <button onClick={() => close()}>Delete</button>
+        <button onClick={() => close()}>Confirm</button>
       </div>
     </div>
   );
 }
 
-function ConfirmWindow() {
+function ConfirmWindow({ style, close }: props) {
   return (
-    <div className={styles["container-confirm"]}>
+    <div
+      className={styles["container-confirm"]}
+      style={{
+        display: style.confirm,
+        top: `${window.pageYOffset + 231}px`,
+      }}
+    >
       <div>
-      <p>Are you sure about finish this job?</p>
-
+        <p>Are you sure about finish this job?</p>
       </div>
       <div className={styles.buttons}>
-        <button>Cancel</button>
-        <button>Confirm</button>
+        <button onClick={() => close()}>Cancel</button>
+        <button onClick={() => close()}>Confirm</button>
       </div>
     </div>
   );

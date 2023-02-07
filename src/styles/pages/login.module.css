@@ -1,3 +1,10 @@
+.window {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: var(--background-dark);
+}
 .container {
   height: 536.95px;
   width: 564px;
