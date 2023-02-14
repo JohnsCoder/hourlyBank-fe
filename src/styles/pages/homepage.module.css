@@ -18,6 +18,7 @@ header h1 {
   font-size: 58px;
   font-weight: 200;
   line-height: 75px;
+  cursor: pointer;
 }
 header div {
   display: flex;

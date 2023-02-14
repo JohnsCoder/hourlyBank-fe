@@ -3,12 +3,10 @@ import styles from "../styles/components/dialog.module.css";
 import { Property as CSS } from "csstype/index.js";
 
 type props = {
-  style: {
-    create: CSS.Display;
-    edit: CSS.Display;
-    confirm: CSS.Display;
+  style: CSS.Display;
+  close: {
+    close: () => void;
   };
-  close: () => void;
 };
 
 function CreateDialog({ style, close }: props) {
@@ -16,8 +14,7 @@ function CreateDialog({ style, close }: props) {
     <div
       className={styles["container-create"]}
       style={{
-        display: style.create,
-        top: `${window.pageYOffset + 231}px`,
+        display: style,
       }}
     >
       <input type="text" placeholder="Title..." />
@@ -36,11 +33,22 @@ function CreateDialog({ style, close }: props) {
             <input type="date" defaultValue="2003-11-27" />
           </div>
         </div>
+        <div className={styles.price}>
+          <label>Preço por hora:</label>
+          <div>
+            <select name="currency-abbr" id="">
+              <option value="R$">R$</option>
+              <option value="U$">U$</option>
+            </select>
+            <hr />
+            <input type="number" defaultValue="2000"></input>
+          </div>
+        </div>
       </div>
       <input type="text" placeholder="Description..." />
       <div className={styles.buttons}>
-        <button onClick={() => close()}>Cancel</button>
-        <button onClick={() => close()}>Confirm</button>
+        <button onClick={() => close.close()}>Cancel</button>
+        <button onClick={() => close.close()}>Confirm</button>
       </div>
     </div>
   );
@@ -51,8 +59,8 @@ function EditDialog({ style, close }: props) {
     <div
       className={styles["container-edit"]}
       style={{
-        display: style.edit,
-        top: `${window.pageYOffset + 231}px`,
+        display: style,
+        top: `${window.pageYOffset / 10 + 20}vh`,
       }}
     >
       <div className={styles.hour}>
@@ -71,24 +79,13 @@ function EditDialog({ style, close }: props) {
         <div className={styles["is-fix"]}>
           <label>Horario Fixo:</label> <input type="checkbox" />
         </div>
-        <div className={styles.price}>
-          <label>Preço por hora:</label>
-          <div>
-            <select name="currency-abbr" id="">
-              <option value="R$">R$</option>
-              <option value="U$">U$</option>
-            </select>
-            <hr />
-            <input type="number" defaultValue="2000"></input>
-          </div>
-        </div>
       </div>
       <input type="text" placeholder="Oque fiz hoje?" />
 
       <div className={styles.buttons}>
-        <button onClick={() => close()}>Cancel</button>
-        <button onClick={() => close()}>Delete</button>
-        <button onClick={() => close()}>Confirm</button>
+        <button onClick={() => close.close()}>Cancel</button>
+        <button onClick={() => close.close()}>Delete</button>
+        <button onClick={() => close.close()}>Confirm</button>
       </div>
     </div>
   );
@@ -99,7 +96,7 @@ function ConfirmWindow({ style, close }: props) {
     <div
       className={styles["container-confirm"]}
       style={{
-        display: style.confirm,
+        display: style,
         top: `${window.pageYOffset + 231}px`,
       }}
     >
@@ -107,8 +104,8 @@ function ConfirmWindow({ style, close }: props) {
         <p>Are you sure about finish this job?</p>
       </div>
       <div className={styles.buttons}>
-        <button onClick={() => close()}>Cancel</button>
-        <button onClick={() => close()}>Confirm</button>
+        <button onClick={() => close.close()}>Cancel</button>
+        <button onClick={() => close.close()}>Confirm</button>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@
   border: none;
   font-family: Inter;
   transition: 0.2s ease-out;
+  outline: none;
 }
 
 #root {

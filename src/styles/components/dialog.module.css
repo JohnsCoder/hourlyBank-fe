@@ -8,9 +8,9 @@ input:hover {
   height: 516px;
   width: 606px;
   background: var(--purple);
-
+  top: 20%;
   border-radius: 12px;
-
+  justify-content: center;
   border: 6px solid var(--black);
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ input:hover {
 .container-create input[type="text"] {
   height: 36px;
   width: 100%;
-  margin: 40px 0;
+  margin: 26px 0;
   border-radius: 0px;
   background: var(--purple);
   border-bottom: 3px solid var(--black);
@@ -37,10 +37,12 @@ input:hover {
   background: #5651ef;
 }
 .date {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  row-gap: 12px;
 }
 
 .date > div {
@@ -54,7 +56,7 @@ input:hover {
   font-size: 26px;
   font-weight: 500;
   line-height: 34px;
-  margin-bottom: 22px;
+  margin-bottom: 12px;
   color: var(--white);
 }
 
@@ -75,6 +77,39 @@ input:hover {
   color: var(--white);
   background: none;
 }
+
+.date .price div {
+  display: flex;
+  width: 140px;
+  align-items: center;
+}
+
+.date input[type="number"],
+select {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 27px;
+  text-align: center;
+  width: 100%;
+  height: 36px;
+  background: none;
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  color: var(--white);
+}
+option {
+  background: var(--purple-darkerst);
+}
+
+.date .price hr {
+  height: 30px;
+  width: 3px;
+  background: var(--white);
+  margin: 0 3px;
+}
+
 
 .buttons {
   width: 100%;
@@ -149,7 +184,7 @@ input:hover {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .hour div div:hover {
@@ -165,34 +200,7 @@ input:hover {
   color: var(--white);
 }
 
-.hour .price div {
-  width: 140px;
-}
 
-.hour .price hr {
-  height: 30px;
-  width: 3px;
-  background: var(--white);
-}
-
-.hour input[type="number"],
-select {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 27px;
-  text-align: center;
-  width: 100%;
-  height: 36px;
-  background: none;
-
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 29px;
-  color: var(--white);
-}
-option {
-  background: var(--purple-darkerst);
-}
 
 .hour div input[type="checkbox"] {
   width: 25%;

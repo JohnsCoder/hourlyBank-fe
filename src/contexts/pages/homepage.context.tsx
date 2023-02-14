@@ -1,20 +1,18 @@
-import React, { createContext, ReactNode, useState } from "react";
+import React, { ClassType, createContext, ReactNode, useState } from "react";
 import type { Property as CSS } from "csstype";
-type Display = {
-  create: CSS.Display;
-  edit: CSS.Display;
-  confirm: CSS.Display;
-};
-type Operation = {
-  open: () => void;
-  close: () => void;
-};
 
 interface HomepageContext {
-  createCard: Operation;
-  editCard: Operation;
-  confirmCard: Operation;
-  display: Display;
+  dialog: {
+    create: IDisplay;
+    edit: IDisplay;
+    confirm: IDisplay;
+  };
+}
+
+interface IDisplay {
+  display: CSS.Display;
+  open: () => void;
+  close: () => void;
 }
 
 export const HomepageContext = createContext({} as HomepageContext);
@@ -24,44 +22,30 @@ export default function HomepageProvider({
 }: {
   children: ReactNode;
 }) {
-  const initialValue = { create: "none", edit: "none", confirm: "none" };
-  const [display, setDisplay] = useState<Display>(initialValue);
+  class Display implements IDisplay {
+    private state = useState<CSS.Display>("none");
+    public display: CSS.Display = this.state[0];
 
-  function open(vis: CSS.Display[]) {
-    setDisplay((display) => ({
-      create: vis[0],
-      edit: vis[1],
-      confirm: vis[2],
-    }));
+    open() {
+      this.state[1]("flex");
+    }
+
+    close() {
+      this.state[1]("none");
+    }
   }
 
-  function close() {
-    setDisplay(initialValue);
-  }
-  const createCard = {
-    open() {
-      return open(["flex", "none", "none"]);
-    },
-    close,
-  };
-
-  const editCard = {
-    open() {
-      return open(["none", "flex", "none"]);
-    },
-    close,
-  };
-
-  const confirmCard = {
-    open() {
-      open(["none", "none", "flex"]);
-    },
-    close,
+  const dialog = {
+    create: new Display(),
+    edit: new Display(),
+    confirm: new Display(),
   };
 
   return (
     <HomepageContext.Provider
-      value={{ createCard, editCard, confirmCard, display }}
+      value={{
+        dialog,
+      }}
     >
       {children}
     </HomepageContext.Provider>
