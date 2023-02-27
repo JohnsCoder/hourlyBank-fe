@@ -64,7 +64,8 @@ input:hover {
   background-color: var(--purple-darkerst);
   border-radius: 9px;
   padding: 10px;
-  width: fit-content;
+  width: 86%;
+  text-align: center;
 }
 .date div div:hover {
   background-color: #2b27a4;
@@ -77,22 +78,25 @@ input:hover {
   color: var(--white);
   background: none;
 }
-
+.date .price {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
 .date .price div {
   display: flex;
-  width: 140px;
+  width: 70%;
   align-items: center;
+  justify-content: center;
 }
 
-.date input[type="number"],
 select {
   font-size: 24px;
   font-weight: 500;
   line-height: 27px;
-  text-align: center;
-  width: 100%;
+  width: 25%;
   height: 36px;
   background: none;
+  text-align: right;
 
   font-size: 24px;
   font-weight: 500;
@@ -101,6 +105,22 @@ select {
 }
 option {
   background: var(--purple-darkerst);
+  width: min-content;
+}
+
+.date input[type="number"] {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 27px;
+  width: 25%;
+  height: 36px;
+  background: none;
+  text-align: left;
+
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  color: var(--white);
 }
 
 .date .price hr {
@@ -109,7 +129,6 @@ option {
   background: var(--white);
   margin: 0 3px;
 }
-
 
 .buttons {
   width: 100%;
@@ -159,6 +178,7 @@ option {
   grid-template-columns: 50% 1fr;
   grid-template-rows: 50% 1fr;
   width: 100%;
+  margin-bottom: 40px;
 }
 .hour > div {
   width: 100%;
@@ -199,8 +219,6 @@ option {
   background: none;
   color: var(--white);
 }
-
-
 
 .hour div input[type="checkbox"] {
   width: 25%;

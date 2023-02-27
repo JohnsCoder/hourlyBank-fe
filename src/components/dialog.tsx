@@ -1,65 +1,131 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/components/dialog.module.css";
 import { Property as CSS } from "csstype/index.js";
+import { DialogContext } from "../contexts/components/dialog.context";
 
-type props = {
-  style: CSS.Display;
-  close: {
-    close: () => void;
-  };
-};
-
-function CreateDialog({ style, close }: props) {
+function CreateDialog() {
+  const { createDialog, CreateProject, handleValue } =
+    useContext(DialogContext);
   return (
     <div
+      data-testid="create-dialog-window"
       className={styles["container-create"]}
       style={{
-        display: style,
+        display: createDialog.display,
       }}
     >
-      <input type="text" placeholder="Title..." />
+      <input
+        type="text"
+        placeholder="Title..."
+        name="title"
+        onChange={(e) =>
+          handleValue({
+            name: e.target.name,
+            value: e.target.value,
+          })
+        }
+      />
       <div className={styles.date}>
         <div className={styles["date-start"]}>
           <label>Data de Inicio:</label>
 
           <div>
-            <input type="date" defaultValue="2023-01-17" />
+            <input
+              type="date"
+              name="dateStart"
+              defaultValue={`
+              ${new Date(Date.now()).getFullYear()}-${(
+                new Date(Date.now()).getMonth() + 1
+              )
+                .toString()
+                .padStart(2, "0")}-${new Date(Date.now())
+                .getUTCDate()
+                .toString()
+                .padStart(2, "0")}`.trim()}
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
 
         <div className={styles["date-finish"]}>
           <label>Data de Termino:</label>
           <div>
-            <input type="date" defaultValue="2003-11-27" />
+            <input
+              type="date"
+              name="dateFinish"
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
         <div className={styles.price}>
           <label>Preço por hora:</label>
           <div>
-            <select name="currency-abbr" id="">
+            <select
+              name="currency-abbr"
+              id=""
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              }
+            >
               <option value="R$">R$</option>
               <option value="U$">U$</option>
             </select>
             <hr />
-            <input type="number" defaultValue="2000"></input>
+            <input
+              type="number"
+              name="price"
+              defaultValue={0}
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: +e.target.value,
+                })
+              }
+            />
           </div>
         </div>
       </div>
-      <input type="text" placeholder="Description..." />
+      <input
+        type="text"
+        placeholder="Description..."
+        name="description"
+        onChange={(e) =>
+          handleValue({
+            name: e.target.name,
+            value: e.target.value,
+          })
+        }
+      />
       <div className={styles.buttons}>
-        <button onClick={() => close.close()}>Cancel</button>
-        <button onClick={() => close.close()}>Confirm</button>
+        <button onClick={() => createDialog.close()}>Cancel</button>
+        <button onClick={() => CreateProject()}>Confirm</button>
       </div>
     </div>
   );
 }
 
-function EditDialog({ style, close }: props) {
+function EditDialog() {
+  const { editDialog, handleValue, EditProject, DeleteProject, isFix } =
+    useContext(DialogContext);
   return (
     <div
+      data-testid="edit-dialog-window"
       className={styles["container-edit"]}
       style={{
-        display: style,
+        display: editDialog.display,
         top: `${window.pageYOffset / 10 + 20}vh`,
       }}
     >
@@ -67,36 +133,69 @@ function EditDialog({ style, close }: props) {
         <div className={styles["start-hour"]}>
           <label>Horario de Inicio:</label>
           <div>
-            <input type="time" defaultValue="10:30"></input>
+            <input
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              }
+              name="timeStart"
+              type="time"
+              defaultValue="10:30"
+            ></input>
           </div>
         </div>
         <div className={styles["finish-hour"]}>
           <label>Horario de Termino:</label>
           <div>
-            <input type="time" defaultValue="18:00"></input>
+            <input
+              onChange={(e) =>
+                handleValue({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              }
+              name="timeEnd"
+              type="time"
+              defaultValue="18:00"
+            />
           </div>
         </div>
         <div className={styles["is-fix"]}>
-          <label>Horario Fixo:</label> <input type="checkbox" />
+          <label>Horario Fixo:</label>{" "}
+          <input type="checkbox" onChange={(e) => isFix(e.target.checked)} />
         </div>
       </div>
-      <input type="text" placeholder="Oque fiz hoje?" />
+      <input
+        onChange={(e) =>
+          handleValue({
+            name: e.target.name,
+            value: e.target.value,
+          })
+        }
+        name="todo"
+        type="text"
+        placeholder="Oque fiz hoje?"
+      />
 
       <div className={styles.buttons}>
-        <button onClick={() => close.close()}>Cancel</button>
-        <button onClick={() => close.close()}>Delete</button>
-        <button onClick={() => close.close()}>Confirm</button>
+        <button onClick={() => editDialog.close()}>Cancel</button>
+        <button onClick={() => DeleteProject()}>Delete</button>
+        <button onClick={() => EditProject()}>Confirm</button>
       </div>
     </div>
   );
 }
 
-function ConfirmWindow({ style, close }: props) {
+function ConfirmWindow() {
+  const { confirmDialog, Finish } = useContext(DialogContext);
   return (
     <div
+      data-testid="confirm-dialog-window"
       className={styles["container-confirm"]}
       style={{
-        display: style,
+        display: confirmDialog.display,
         top: `${window.pageYOffset + 231}px`,
       }}
     >
@@ -104,8 +203,8 @@ function ConfirmWindow({ style, close }: props) {
         <p>Are you sure about finish this job?</p>
       </div>
       <div className={styles.buttons}>
-        <button onClick={() => close.close()}>Cancel</button>
-        <button onClick={() => close.close()}>Confirm</button>
+        <button onClick={() => confirmDialog.close()}>Cancel</button>
+        <button onClick={() => Finish()}>Confirm</button>
       </div>
     </div>
   );

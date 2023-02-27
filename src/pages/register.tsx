@@ -1,17 +1,53 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { RegisterContext } from "../contexts/pages/register.context";
 import styles from "../styles/pages/register.module.css";
 
 export default function Register() {
-  const { register } = useContext(RegisterContext);
+  const { register, handleValue } = useContext(RegisterContext);
+
   return (
-    <div className={styles.window}>
+    <div data-testid="registerWindow" className={styles.window}>
       <div className={styles.container}>
-        <button onClick={() => window.history.back()}>&#129044;</button>
-        <input type="username" placeholder="Username..." />
-        <input type="email" placeholder="Email..." />
-        <input type="password" placeholder="Password..." />
-        <button onClick={() => register()}>Register</button>
+        <Link data-testid="getBack" to="/">
+          &#129044;
+        </Link>
+        <input
+          type="username"
+          placeholder="Username..."
+          onChange={(e) =>
+            handleValue({
+              name: e.target.name,
+              value: e.target.value,
+            })
+          }
+          name="username"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email..."
+          onChange={(e) =>
+            handleValue({
+              name: e.target.name,
+              value: e.target.value,
+            })
+          }
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password..."
+          onChange={(e) =>
+            handleValue({
+              name: e.target.name,
+              value: e.target.value,
+            })
+          }
+        />
+        <button data-testid="register" onClick={() => register()}>
+          Register
+        </button>
       </div>
     </div>
   );

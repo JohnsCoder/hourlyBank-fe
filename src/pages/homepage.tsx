@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import styles from "../styles/pages/homepage.module.css";
 import Card from "../components/card";
 import { ConfirmWindow, CreateDialog, EditDialog } from "../components/dialog";
-import { HomepageContext } from "../contexts/pages/homepage.context";
+import { DialogContext } from "../contexts/components/dialog.context";
+
 export default function Homepage() {
-  const { dialog } = useContext(HomepageContext);
-  const test = () => console.log("chamou");
+  const { createDialog } = useContext(DialogContext);
+
   return (
-    <div className={styles.window}>
-      <header>
+    <div data-testid="homepageWindow" className={styles.window}>
+      <header data-testid="header">
         <h1>Hourly Bank</h1>
         <div>
           <button
+            data-testid="createDialog"
             onClick={() => {
-              dialog.create.open();
+              createDialog.open();
             }}
           >
             +
@@ -22,49 +24,21 @@ export default function Homepage() {
         </div>
       </header>
       <hr />
-      <section className={styles.cards}>
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
-        <Card
-          editCard={() => dialog.edit.open()}
-          confirmCard={() => dialog.confirm.open()}
-        />
+      <section data-testid="cards" className={styles.cards}>
+        <Card />
       </section>
       <hr />
-      <footer>
+      <footer data-testid="footer">
         <span>
-          Deleloped by <a href="https://github.com/JohnsCoder" target="_blank">JohnsCoder</a>
+          Deleloped by{" "}
+          <a href="https://github.com/JohnsCoder" target="_blank">
+            JohnsCoder
+          </a>
         </span>
       </footer>
-      <CreateDialog style={dialog.create.display} close={dialog.create} />
-      <EditDialog style={dialog.edit.display} close={dialog.edit} />
-      <ConfirmWindow style={dialog.confirm.display} close={dialog.confirm} />
+      <CreateDialog />
+      <EditDialog />
+      <ConfirmWindow />
     </div>
   );
 }

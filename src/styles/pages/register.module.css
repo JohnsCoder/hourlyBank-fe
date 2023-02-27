@@ -19,9 +19,8 @@
   padding: 27px 76px;
 }
 
-.container button:first-child {
+.container a:first-child {
   margin: 0 0 20px -45px;
-
 
   height: 56px;
   display: flex;
@@ -31,17 +30,18 @@
   align-self: flex-start;
   background: none;
   font-size: 64px;
-  transition: .2s;
+  transition: 0.2s;
   line-height: 0;
+  text-decoration: none;
+  color: black;
 }
 
-.container button:first-child:hover {
+.container a:first-child:hover {
   background: rgb(214, 214, 214);
   border-radius: 6px;
-
 }
 
-.container button:first-child:active {
+.container a:first-child:active {
   background-color: rgb(166, 166, 166);
 }
 
@@ -60,20 +60,17 @@
   font-size: 48px;
   font-weight: 300;
 
-  transition: .2s;
-
+  transition: 0.2s;
 }
 
 .container input:hover {
   background: #00000018;
   border-radius: 4px;
 
-  transition: .2s;
-
+  transition: 0.2s;
 }
 
-
-.container button:not(:first-child) {
+.container button {
   height: 75px;
   width: 220.54px;
 
@@ -95,12 +92,10 @@
   /* transition-timing-function: linear; */
 }
 
-.container button:not(:first-child):hover {
+.container button:hover {
   background-color: var(--purple-light);
-
 }
 
-.container button:not(:first-child):active {
+.container button:active {
   box-shadow: none;
-
 }

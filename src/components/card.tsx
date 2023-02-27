@@ -1,27 +1,55 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CardContext } from "../contexts/components/card.context";
+import { DialogContext } from "../contexts/components/dialog.context";
 import styles from "../styles/components/card.module.css";
 
-type props = {
-  editCard: () => void;
-  confirmCard: (e: void) => void;
-};
-export default function Card({ editCard, confirmCard }: props) {
-  return (
-    <div className={styles.card} onClick={() => editCard()}>
-      <h1>Project Name</h1>
-      <span>R$300,00</span>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum
-        velit non nisl aliquet pulvinar. Pellentesque aliquam tincidunt nisi ut
-        vehicula. Quisque scelerisque est ut dignissim viverra. Vestibulum ac
-        ultrices lectus. Nunc venenatis.
-      </p>
-      <button
-        className={styles.confirm}
-        onClick={(e) => confirmCard(e.stopPropagation())}
-      >
-        ✔
-      </button>
-    </div>
-  );
+export default function Card() {
+  const { editDialog, confirmDialog, getProps } = useContext(DialogContext);
+  const { getProjects } = useContext(CardContext);
+  if (getProjects !== undefined) {
+    const projects = getProjects.filter((project) => !project?.finished);
+    if (projects.length !== 0) {
+      return (
+        <>
+          {projects.map((project) => {
+            const price = project.daily.reduce(
+              (elmtOne, elmtTwo) => elmtOne + elmtTwo.hour,
+              0
+            );
+            return (
+              <div
+                key={project.id}
+                data-testid="cardWindow"
+                className={styles.card}
+                onClick={() => {
+                  editDialog.open();
+                  getProps(project);
+                }}
+              >
+                <h1 data-testid="heading">{project.title}</h1>
+                <span data-testid="status">{`${project.currency} ${
+                  (price * project.price).toFixed(2) ||
+                  (0).toFixed(2).replace(".", ",")
+                }`}</span>
+                <p data-testid="paragraph">{project.description}</p>
+                <button
+                  data-testid="confirmButton"
+                  className={styles.confirm}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    getProps(project);
+                    confirmDialog.open();
+                  }}
+                >
+                  ✔
+                </button>
+              </div>
+            );
+          })}
+        </>
+      );
+    }
+    return <span> No projects yet...</span>;
+  }
+  return <span> No projects yet...</span>;
 }

@@ -123,12 +123,10 @@
   height: 80vh;
   left: 0;
 
-
   transform: rotate(45deg) translate(-120px, -148px);
 
   border-radius: 12px 0 0 12px;
 }
-
 
 /* @media (max-width: 1460px) {
   .group-1 {

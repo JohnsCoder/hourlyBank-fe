@@ -15,15 +15,11 @@
 .card:hover {
   /* box-shadow: var(--purple-dark) 7px 7px 17px -3px; */
   background: var(--black);
-
-
 }
 
 /* .card:active {
   box-shadow: none;
 } */
-
-
 
 .card h1 {
   color: var(--green);

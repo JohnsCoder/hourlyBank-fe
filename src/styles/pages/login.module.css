@@ -17,10 +17,9 @@
   align-items: center;
   padding: 27px 76px;
   box-sizing: border-box;
-
 }
 
-.container button:first-child {
+.container a:first-child {
   align-self: flex-start;
   margin: 0 0 20px -45px;
 
@@ -32,21 +31,20 @@
   background: none;
   font-size: 64px;
 
-  transition: .2s;
+  transition: 0.2s;
   line-height: 0;
-
+  text-decoration: none;
+  color: black;
 }
 
-.container button:first-child:hover {
+.container a:first-child:hover {
   background: rgb(214, 214, 214);
   border-radius: 6px;
-
 }
 
-.container button:first-child:active {
+.container a:first-child:active {
   background-color: rgb(166, 166, 166);
 }
-
 
 .container input {
   box-sizing: border-box;
@@ -65,24 +63,21 @@
   color: black;
   outline: none;
 
-  transition: .2s;
-
+  transition: 0.2s;
 }
 
 .container input:hover {
   background: #00000018;
   border-radius: 4px;
 
-  transition: .2s;
-
+  transition: 0.2s;
 }
 
-.container button:not(:first-child) {
+.container button {
   height: 75.00850677490234px;
   width: 168.97787475585938px;
   margin-bottom: 20px;
 
-  
   border-radius: 0px;
   background: var(--purple-dark);
 
@@ -99,22 +94,19 @@
   transition: 0.2s ease-out;
 }
 
-.container button:not(:first-child):hover {
+.container button:hover {
   background-color: var(--purple-light);
-
 }
 
-.container button:not(:first-child):active {
+.container button:active {
   box-shadow: none;
-
 }
 
-.container a {
+.container a:not(:first-child) {
   font-size: 28px;
   font-weight: 300;
   line-height: 39px;
   letter-spacing: 0em;
   text-align: left;
   color: var(--purple-dark);
-
 }

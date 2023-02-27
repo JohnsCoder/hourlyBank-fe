@@ -1,19 +1,44 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { LoginContext } from '../contexts/pages/login.context';
+import { LoginContext } from "../contexts/pages/login.context";
 import styles from "../styles/pages/login.module.css";
 export default function Login() {
-  const {login} = useContext(LoginContext)
+  const { login, handleValue } = useContext(LoginContext);
   return (
-    <div className={styles.window}>
-
-    <div className={styles.container}>
-      <button onClick={() => window.history.back()}>&#129044;</button>
-      <input type="email" placeholder="Email..." />
-      <input type="password" placeholder="Password..." />
-      <button onClick={() => login()}>Login</button>
-      <Link to="/register">Register</Link>
-    </div>
+    <div data-testid="loginWindow" className={styles.window}>
+      <div role="container" className={styles.container}>
+        <Link data-testid="getBack" to="/">
+          &#129044;
+        </Link>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email..."
+          onChange={(e) =>
+            handleValue({
+              name: e.target.name,
+              value: e.target.value,
+            })
+          }
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password..."
+          onChange={(e) =>
+            handleValue({
+              name: e.target.name,
+              value: e.target.value,
+            })
+          }
+        />
+        <button data-testid="login" onClick={() => login()}>
+          Login
+        </button>
+        <Link data-testid="register" to="/register">
+          Register
+        </Link>
+      </div>
     </div>
   );
 }

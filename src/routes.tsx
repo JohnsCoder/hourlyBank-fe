@@ -1,12 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import CardProvider from "./contexts/components/card.context";
+import DialogProvider from "./contexts/components/dialog.context";
+import LoginProvider from "./contexts/pages/login.context";
+import RegisterProvider from "./contexts/pages/register.context";
 import Homepage from "./pages/homepage";
 import Landing from "./pages/landing";
 import Login from "./pages/login";
@@ -19,9 +17,35 @@ function Paths() {
   const routes = (
     <Routes>
       <Route path={"/"} element={<Landing />} />
-      <Route path={"/register"} element={<Register />} />
-      <Route path={"/login"} element={<Login />} />
-      <Route path={"/homepage"} element={<Homepage />} />
+
+      <Route
+        path={"/register"}
+        element={
+          <RegisterProvider>
+            <Register />
+          </RegisterProvider>
+        }
+      />
+
+      <Route
+        path={"/login"}
+        element={
+          <LoginProvider>
+            <Login />
+          </LoginProvider>
+        }
+      />
+
+      <Route
+        path={"/homepage"}
+        element={
+          <CardProvider>
+            <DialogProvider>
+              <Homepage />
+            </DialogProvider>
+          </CardProvider>
+        }
+      />
     </Routes>
   );
 
