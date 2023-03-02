@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import CardProvider from "./contexts/components/card.context";
 import DialogProvider from "./contexts/components/dialog.context";
+import HomepageProvider from "./contexts/pages/homepage.context";
 import LoginProvider from "./contexts/pages/login.context";
 import RegisterProvider from "./contexts/pages/register.context";
 import Homepage from "./pages/homepage";
@@ -41,7 +42,9 @@ function Paths() {
         element={
           <CardProvider>
             <DialogProvider>
-              <Homepage />
+              <HomepageProvider>
+                <Homepage />
+              </HomepageProvider>
             </DialogProvider>
           </CardProvider>
         }

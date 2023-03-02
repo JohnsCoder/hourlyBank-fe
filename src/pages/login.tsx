@@ -5,7 +5,14 @@ import styles from "../styles/pages/login.module.css";
 export default function Login() {
   const { login, handleValue } = useContext(LoginContext);
   return (
-    <div data-testid="loginWindow" className={styles.window}>
+    <form
+      data-testid="loginWindow"
+      className={styles.window}
+      onSubmit={(e) => {
+        login();
+        e.preventDefault();
+      }}
+    >
       <div role="container" className={styles.container}>
         <Link data-testid="getBack" to="/">
           &#129044;
@@ -32,13 +39,11 @@ export default function Login() {
             })
           }
         />
-        <button data-testid="login" onClick={() => login()}>
-          Login
-        </button>
+        <button data-testid="login">Login</button>
         <Link data-testid="register" to="/register">
           Register
         </Link>
       </div>
-    </div>
+    </form>
   );
 }

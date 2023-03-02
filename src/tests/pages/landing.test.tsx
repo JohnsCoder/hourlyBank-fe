@@ -1,18 +1,18 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event/";
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Landing from "../../pages/landing";
 import Login from "../../pages/login";
 import Register from "../../pages/register";
+
+
 
 describe("landing page", () => {
   it("default window", () => {
     const { getByTestId, getByText } = render(
       <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<Landing />} />
-        </Routes>
+        <Landing />
       </BrowserRouter>
     );
 

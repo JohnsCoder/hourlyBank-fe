@@ -71,7 +71,7 @@ function CreateDialog() {
           <label>Preço por hora:</label>
           <div>
             <select
-              name="currency-abbr"
+              name="currency"
               id=""
               onChange={(e) =>
                 handleValue({
@@ -163,7 +163,7 @@ function EditDialog() {
           </div>
         </div>
         <div className={styles["is-fix"]}>
-          <label>Horario Fixo:</label>{" "}
+          <label>Completar dias: </label>
           <input type="checkbox" onChange={(e) => isFix(e.target.checked)} />
         </div>
       </div>

@@ -81,6 +81,7 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
   const confirmDialog = new Display();
 
   function handleValue(props: { name: string; value: string | number }) {
+    console.log(props)
     setValue((value) => ({
       ...(value as Project),
       [props.name]: props.value,
@@ -117,7 +118,7 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
 
         description: value?.description,
         price: value?.price,
-        currency: "R$",
+        currency: value?.currency || "R$",
       },
       refetchQueries: [GET_PROJECT],
     });

@@ -8,12 +8,24 @@ import {
 } from "../../components/dialog";
 import userEvent from "@testing-library/user-event/";
 
+import { ApolloProvider } from "@apollo/client";
+import { ApolloClient, HttpLink } from "@apollo/client";
+import { InMemoryCache } from "@apollo/client/cache";
+import fetch from "cross-fetch";
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: "http://localhost:8000/", fetch }),
+  cache: new InMemoryCache({}),
+});
+
 describe("Dialog Component", () => {
   it("create dialog default window", () => {
     const { getByPlaceholderText, getByText, getByDisplayValue } = render(
-      <DialogProvider>
-        <CreateDialog />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <CreateDialog />
+        </DialogProvider>
+      </ApolloProvider>
     );
     expect(getByPlaceholderText("Title...")).toBeInTheDocument();
     expect(getByDisplayValue("2023-01-17")).toBeInTheDocument();
@@ -27,9 +39,11 @@ describe("Dialog Component", () => {
 
   it("edit dialog default window", () => {
     const { getByPlaceholderText, getByText, getByDisplayValue } = render(
-      <DialogProvider>
-        <EditDialog />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <EditDialog />
+        </DialogProvider>
+      </ApolloProvider>
     );
     expect(getByDisplayValue("10:30")).toBeInTheDocument();
     expect(getByDisplayValue("18:00")).toBeInTheDocument();
@@ -41,9 +55,11 @@ describe("Dialog Component", () => {
 
   it("confirm dialog default window", () => {
     const { getByText } = render(
-      <DialogProvider>
-        <ConfirmWindow />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <ConfirmWindow />
+        </DialogProvider>
+      </ApolloProvider>
     );
     expect(getByText("Cancel")).toBeInTheDocument();
     expect(getByText("Confirm")).toBeInTheDocument();
@@ -53,9 +69,11 @@ describe("Dialog Component", () => {
 describe("dialog features", () => {
   it("create dialog features", async () => {
     const { getByText, getByTestId } = render(
-      <DialogProvider>
-        <CreateDialog />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <CreateDialog />
+        </DialogProvider>
+      </ApolloProvider>
     );
 
     await userEvent.click(getByText("Cancel"));
@@ -67,9 +85,11 @@ describe("dialog features", () => {
 
   it("edit dialog features", async () => {
     const { getByText, getByTestId } = render(
-      <DialogProvider>
-        <EditDialog />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <EditDialog />
+        </DialogProvider>
+      </ApolloProvider>
     );
 
     await userEvent.click(getByText("Cancel"));
@@ -84,9 +104,11 @@ describe("dialog features", () => {
 
   it("confirm dialog features", async () => {
     const { getByText, getByTestId } = render(
-      <DialogProvider>
-        <ConfirmWindow />
-      </DialogProvider>
+      <ApolloProvider client={client}>
+        <DialogProvider>
+          <ConfirmWindow />
+        </DialogProvider>
+      </ApolloProvider>
     );
     await userEvent.click(getByText("Cancel"));
     expect(getByTestId("confirm-dialog-window")).not.toBeVisible();

@@ -7,7 +7,14 @@ export default function Register() {
   const { register, handleValue } = useContext(RegisterContext);
 
   return (
-    <div data-testid="registerWindow" className={styles.window}>
+    <form
+      data-testid="registerWindow"
+      className={styles.window}
+      onSubmit={(e) => {
+        e.preventDefault();
+        register();
+      }}
+    >
       <div className={styles.container}>
         <Link data-testid="getBack" to="/">
           &#129044;
@@ -45,10 +52,8 @@ export default function Register() {
             })
           }
         />
-        <button data-testid="register" onClick={() => register()}>
-          Register
-        </button>
+        <button data-testid="register">Register</button>
       </div>
-    </div>
+    </form>
   );
 }

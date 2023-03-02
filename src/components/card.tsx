@@ -49,7 +49,7 @@ export default function Card() {
         </>
       );
     }
-    return <span> No projects yet...</span>;
+    return <span data-testid="message"> No projects yet...</span>;
   }
-  return <span> No projects yet...</span>;
+  return <span data-testid="message"> No projects yet...</span>;
 }
