@@ -13,13 +13,14 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   const auth = useQuery(AUTHENTICATE, {
     variables: {
-      token: new Cookies().get().loginToken || "",
+      token: new Cookies().get().loginToken,
     },
   });
   const location = useLocation().pathname;
   if (location === "/homepage") {
     if (auth?.data?.Auth?.code === 401) {
       navigate("/");
+      new Cookies().remove("loginToken")
     }
   }
 

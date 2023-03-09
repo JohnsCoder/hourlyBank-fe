@@ -35,12 +35,21 @@ export default function LoginProvider({ children }: { children: ReactNode }) {
 
   const navigate = useNavigate();
   function login() {
+    if ([value?.email, value?.password].includes(undefined)) {
+      alert("É preciso preencher todos os campos");
+      return;
+    }
     refetch().then(({ data }) => {
       if (data["GetUser"].code > 202) {
         alert(data["GetUser"].message);
         return;
       }
-      new Cookies().add(data["GetUser"].payload.tokenid);
+      new Cookies().add({
+        key: "loginToken",
+        value: data["GetUser"].payload.tokenid,
+        hourExp: 24,
+        place: "/login",
+      });
       navigate("/homepage");
     });
   }

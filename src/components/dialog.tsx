@@ -33,6 +33,7 @@ function CreateDialog() {
             <input
               type="date"
               name="dateStart"
+              data-testid="date-start"
               defaultValue={`
               ${new Date(Date.now()).getFullYear()}-${(
                 new Date(Date.now()).getMonth() + 1
@@ -58,6 +59,7 @@ function CreateDialog() {
             <input
               type="date"
               name="dateFinish"
+              data-testid="date-finish"
               onChange={(e) =>
                 handleValue({
                   name: e.target.name,
@@ -71,6 +73,7 @@ function CreateDialog() {
           <label>Preço por hora:</label>
           <div>
             <select
+            data-testid="currency"
               name="currency"
               id=""
               onChange={(e) =>
@@ -88,6 +91,7 @@ function CreateDialog() {
               type="number"
               name="price"
               defaultValue={0}
+              data-testid="price"
               onChange={(e) =>
                 handleValue({
                   name: e.target.name,
@@ -110,8 +114,15 @@ function CreateDialog() {
         }
       />
       <div className={styles.buttons}>
-        <button onClick={() => createDialog.close()}>Cancel</button>
-        <button onClick={() => CreateProject()}>Confirm</button>
+        <button
+          data-testid="cancel-create"
+          onClick={() => createDialog.close()}
+        >
+          Cancel
+        </button>
+        <button data-testid="confirm-create" onClick={() => CreateProject()}>
+          Confirm
+        </button>
       </div>
     </div>
   );
@@ -140,10 +151,11 @@ function EditDialog() {
                   value: e.target.value,
                 })
               }
+              data-testid="start-hour"
               name="timeStart"
               type="time"
               defaultValue="10:30"
-            ></input>
+            />
           </div>
         </div>
         <div className={styles["finish-hour"]}>
@@ -156,6 +168,7 @@ function EditDialog() {
                   value: e.target.value,
                 })
               }
+              data-testid="finish-hour"
               name="timeEnd"
               type="time"
               defaultValue="18:00"
@@ -164,7 +177,12 @@ function EditDialog() {
         </div>
         <div className={styles["is-fix"]}>
           <label>Completar dias: </label>
-          <input type="checkbox" onChange={(e) => isFix(e.target.checked)} />
+
+          <input
+            data-testid="complete-days"
+            type="checkbox"
+            onChange={(e) => isFix(e.target.checked)}
+          />
         </div>
       </div>
       <input
@@ -180,9 +198,15 @@ function EditDialog() {
       />
 
       <div className={styles.buttons}>
-        <button onClick={() => editDialog.close()}>Cancel</button>
-        <button onClick={() => DeleteProject()}>Delete</button>
-        <button onClick={() => EditProject()}>Confirm</button>
+        <button data-testid="cancel-edit" onClick={() => editDialog.close()}>
+          Cancel
+        </button>
+        <button data-testid="delete-edit" onClick={() => DeleteProject()}>
+          Delete
+        </button>
+        <button data-testid="confirm-edit" onClick={() => EditProject()}>
+          Confirm
+        </button>
       </div>
     </div>
   );
@@ -192,7 +216,7 @@ function ConfirmWindow() {
   const { confirmDialog, Finish } = useContext(DialogContext);
   return (
     <div
-      data-testid="confirm-dialog-window"
+      data-testid="finish-dialog-window"
       className={styles["container-confirm"]}
       style={{
         display: confirmDialog.display,
@@ -203,8 +227,8 @@ function ConfirmWindow() {
         <p>Are you sure about finish this job?</p>
       </div>
       <div className={styles.buttons}>
-        <button onClick={() => confirmDialog.close()}>Cancel</button>
-        <button onClick={() => Finish()}>Confirm</button>
+        <button data-testid="cancel-finish" onClick={() => confirmDialog.close()}>Cancel</button>
+        <button data-testid="confirm-finish" onClick={() => Finish()}>Confirm</button>
       </div>
     </div>
   );

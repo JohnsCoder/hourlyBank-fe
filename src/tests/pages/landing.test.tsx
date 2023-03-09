@@ -1,12 +1,15 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event/";
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  MemoryRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Landing from "../../pages/landing";
 import Login from "../../pages/login";
 import Register from "../../pages/register";
-
-
 
 describe("landing page", () => {
   it("default window", () => {
@@ -27,12 +30,12 @@ describe("landing page", () => {
 describe("landing page features ", () => {
   it("landing page features", async () => {
     const { getByText, findByTestId } = render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={["/"]}>
         <Routes>
           <Route path={"/"} element={<Landing />} />
           <Route path={"/login"} element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      </MemoryRouter>
     );
     const login = getByText("Login");
     await userEvent.click(login);
@@ -41,16 +44,14 @@ describe("landing page features ", () => {
   });
 
   it("register feature", async () => {
-    const { getByText, findByTestId, getByTestId } = render(
-      <BrowserRouter>
+    const { getByText, findByTestId } = render(
+      <MemoryRouter>
         <Routes>
           <Route path={"/"} element={<Landing />} />
           <Route path={"/register"} element={<Register />} />
-          <Route path={"/login"} element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      </MemoryRouter>
     );
-    await userEvent.click(getByTestId("getBack"));
 
     await userEvent.click(getByText("Register"));
 

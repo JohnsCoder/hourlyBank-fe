@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Card from "../../components/card";
+import {Card} from "../../components/card";
 import CardProvider from "../../contexts/components/card.context";
 import DialogProvider from "../../contexts/components/dialog.context";
 import { ApolloProvider } from "@apollo/client";

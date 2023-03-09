@@ -9,6 +9,11 @@ type User = {
   email: String;
   password: String;
 };
+type CreateUser = {
+  message: String;
+  status: String;
+  code: Number;
+};
 
 interface RegisterContext {
   register: () => void;
@@ -24,6 +29,7 @@ export default function RegisterProvider({
 }) {
   const [value, setValue] = useState<User>();
   const [CreateUser] = useMutation(CREATE_USER);
+  const navigate = useNavigate();
 
   function handleValue(props: { name: string; value: string }) {
     setValue((data) => ({
@@ -32,23 +38,25 @@ export default function RegisterProvider({
     }));
   }
 
-  const navigate = useNavigate();
-  async function register() {
-    await CreateUser({
+  function register() {
+    if ([value?.username, value?.email, value?.password].includes(undefined)) {
+      alert("É preciso preencher todos os campos");
+      return;
+    }
+    CreateUser({
       variables: {
-        username: value?.username,
-        email: value?.email,
-        password: value?.password,
+        username: (value as User).username,
+        email: (value as User).email,
+        password: (value as User).password,
       },
     }).then(({ data }) => {
-      if (data["CreateUser"].code > 202) {
+      if (data["CreateUser"].code !== 201) {
         alert(data["CreateUser"].message);
         return;
       }
       navigate("/login");
     });
   }
-
   return (
     <RegisterContext.Provider value={{ register, handleValue }}>
       {children}

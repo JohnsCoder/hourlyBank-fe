@@ -1,4 +1,4 @@
-.card {
+.card, .finished-card {
   box-sizing: border-box;
   border-radius: 7px;
   border: 2px solid var(--green);
@@ -9,32 +9,38 @@
   transition: all 0.2s;
   overflow: hidden;
   cursor: pointer;
+  max-height: 283px;
   /* z-index: 1; */
 }
 
-.card:hover {
+.card:hover, .finished-card:hover {
   /* box-shadow: var(--purple-dark) 7px 7px 17px -3px; */
   background: var(--black);
+}
+ .finished-card:hover {
+  /* box-shadow: var(--purple-dark) 7px 7px 17px -3px; */
+  background: var(--black);
+  border: 2px solid rgb(255, 12, 12);
 }
 
 /* .card:active {
   box-shadow: none;
 } */
 
-.card h1 {
+.card h1,  .finished-card h1 {
   color: var(--green);
   font-size: 26px;
   font-weight: 700;
   line-height: 34px;
 }
 
-.card span {
+.card span, .finished-card span {
   font-size: 22px;
   font-weight: 700;
   line-height: 29px;
   color: var(--purple-dark);
 }
-.card p {
+.card p, .finished-card p {
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -58,7 +64,7 @@
   line-height: 0;
 }
 
-.card:hover .confirm {
+.card:hover .confirm, .finished-card:hover .confirm {
   visibility: visible;
   opacity: 0.6;
 }
@@ -69,6 +75,36 @@
 }
 
 .confirm:active {
+  background-color: #000000;
+  box-shadow: none;
+}
+.delete {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  background: rgb(255, 12, 12);
+  font-size: 22px;
+  line-height: 0;
+}
+
+.card:hover .delete, .finished-card:hover .delete {
+  visibility: visible;
+  opacity: 0.6;
+}
+
+.delete:hover {
+  box-shadow: rgba(255, 0, 0, 0.48) 0px 0px 131px 97px;
+  opacity: 1 !important;
+}
+
+.delete:active {
   background-color: #000000;
   box-shadow: none;
 }

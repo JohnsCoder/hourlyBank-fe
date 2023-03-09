@@ -64,6 +64,7 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
       token: new Cookies().get().loginToken,
     },
   });
+
   class Display implements IDisplay {
     private state = useState<CSS.Display>("none");
     public display: CSS.Display = this.state[0];
@@ -81,7 +82,6 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
   const confirmDialog = new Display();
 
   function handleValue(props: { name: string; value: string | number }) {
-    console.log(props)
     setValue((value) => ({
       ...(value as Project),
       [props.name]: props.value,
@@ -90,6 +90,7 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
   const dateFinish = `${`${value?.dateFinish}`.split("-")[0]}-${parseInt(
     `${value?.dateFinish}`.split("-")[1]
   )}-${`${value?.dateFinish}`.split("-")[2]}`;
+
   async function CreateProject() {
     if (
       [
@@ -106,9 +107,9 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
     await createProject({
       variables: {
         userId: data.Auth.payload.id,
-        title: value?.title,
+        title: (value as Project).title,
         dateStart:
-          value?.dateStart ||
+        (value as Project).dateStart ||
           new Date(
             new Date(
               `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
@@ -116,11 +117,19 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
           ),
         dateFinish: dateFinish,
 
-        description: value?.description,
-        price: value?.price,
-        currency: value?.currency || "R$",
+        description: (value as Project).description,
+        price: (value as Project).price,
+        currency: (value as Project).currency || "R$",
       },
-      refetchQueries: [GET_PROJECT],
+      refetchQueries: [
+        GET_PROJECT,
+        "GetProjects",
+
+        {
+          query: GET_PROJECT,
+          variables: ["userId"],
+        },
+      ],
     });
   }
 
@@ -143,7 +152,6 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
 
   function EditProject() {
     const minutes = timeEnd - timeStart;
-
     if (timeStart > timeEnd) {
       alert("Tempo de projeto não pode exceder o dia.");
       return;
@@ -155,8 +163,8 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
 
     const days = Math.ceil(
       (new Date().getTime() -
-        (parseInt(project?.dateStart.toString() as string) +
-          (project?.daily as day[]).length * 24 * 60 * 60 * 1000)) /
+        (parseInt((project as Project).dateStart.toString() as string) +
+          ((project as Project).daily as day[]).length * 24 * 60 * 60 * 1000)) /
         (24 * 60 * 60 * 1000)
     );
     if (fixed) {
@@ -164,11 +172,17 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
         setTimeout(() => {
           updateProject({
             variables: {
-              id: project?.id,
+              id: (project as Project).id,
               hour: minutes / 60,
               todo: "",
             },
-            refetchQueries: [GET_PROJECT],
+            refetchQueries: [
+              {
+                query: GET_PROJECT,
+                returnPartialData: true,
+                canonizeResults: true,
+              },
+            ],
           });
         }, 100 * i);
       }
@@ -179,31 +193,50 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
       setTimeout(() => {
         updateProject({
           variables: {
-            id: project?.id,
+            id: (project as Project).id,
             hour: 0,
             todo: "",
           },
-          refetchQueries: [GET_PROJECT],
+          refetchQueries: [
+            GET_PROJECT,
+
+            {
+              query: GET_PROJECT,
+            },
+          ],
         });
       }, 100 * i);
     }
 
     updateProject({
       variables: {
-        id: project?.id,
+        id: (project as Project).id,
         hour: minutes / 60,
-        todo: value?.todo + "",
+        todo: (value as Project).todo + "",
       },
-      refetchQueries: [GET_PROJECT],
+
+      refetchQueries: [
+        GET_PROJECT,
+
+        {
+          query: GET_PROJECT,
+        },
+      ],
     });
   }
 
   function DeleteProject() {
     deleteProject({
       variables: {
-        id: project?.id,
+        id: (project as Project).id,
       },
-      refetchQueries: [GET_PROJECT],
+      refetchQueries: [
+        GET_PROJECT,
+
+        {
+          query: GET_PROJECT,
+        },
+      ],
     });
     editDialog.close();
   }
@@ -211,9 +244,15 @@ export default function DialogProvider({ children }: { children: ReactNode }) {
   function Finish() {
     FinishProject({
       variables: {
-        id: project?.id,
+        id: (project as Project).id,
       },
-      refetchQueries: [GET_PROJECT],
+      refetchQueries: [
+        GET_PROJECT,
+
+        {
+          query: GET_PROJECT,
+        },
+      ],
     });
     confirmDialog.close();
   }

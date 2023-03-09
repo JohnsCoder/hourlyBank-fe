@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import styles from "../styles/pages/homepage.module.css";
-import Card from "../components/card";
+import { Card, FinishedCard } from "../components/card";
 import { ConfirmWindow, CreateDialog, EditDialog } from "../components/dialog";
 import { DialogContext } from "../contexts/components/dialog.context";
-import { LogOut } from "lucide-react";
+import { LogOut, ChevronDown } from "lucide-react";
 import { HomepageContext } from "../contexts/pages/homepage.context";
 
 export default function Homepage() {
   const { createDialog } = useContext(DialogContext);
-  const { getBack } = useContext(HomepageContext)
+  const { getBack, style, show } = useContext(HomepageContext);
 
   return (
     <div data-testid="homepageWindow" className={styles.window}>
@@ -27,11 +27,35 @@ export default function Homepage() {
         </div>
       </header>
       <hr />
-      <button className={styles.logout} onClick={() => getBack()}>
+      <button
+        data-testid="logout"
+        className={styles.logout}
+        onClick={() => getBack()}
+      >
         <LogOut />
       </button>
       <section data-testid="cards" className={styles.cards}>
         <Card />
+      </section>
+      <div data-testid="cards-split" className={styles["cards-split"]}>
+        <hr style={{ display: style.display }} />
+
+        <button
+          data-testid="show-cards"
+          className={styles.more}
+          onClick={() => show()}
+        >
+          <ChevronDown style={{ transform: style.transform }} />
+        </button>
+      </div>
+      <section
+        style={{
+          display: style.display,
+        }}
+        data-testid="hidden-cards"
+        className={styles["hidden-cards"]}
+      >
+        <FinishedCard />
       </section>
       <hr />
       <footer data-testid="footer">

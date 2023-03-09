@@ -1,13 +1,21 @@
+type Cookie = {
+  key: string;
+  value: string;
+  hourExp: number;
+  place: string;
+};
+
 class Cookies {
   private cookie = document.cookie.split("; ").map((e) => e.split("="));
-  add(value: string) {
-    document.cookie = `loginToken=${value}; expires=${new Date(
-      new Date().getTime() + 24 * 60 * 60 * 1000
-    )}; place="/login"; SameSite=strict; Secure";`;
+
+  add({ key, value, hourExp, place }: Cookie) {
+    document.cookie = `${key}=${value}; expires=${new Date(
+      new Date().getTime() + hourExp * 60 * 60 * 1000
+    )}; place=${place}; SameSite=strict; Secure";`;
   }
 
-  remove() {
-    document.cookie = `loginToken=""; expires=${Date()}`;
+  remove(key: string) {
+    document.cookie = `${key}=""; expires=${Date()}`;
   }
 
   get() {
