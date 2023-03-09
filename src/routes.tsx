@@ -12,7 +12,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 
 function Paths() {
-  console.log(import.meta.env.VITE_API_URL)
+  console.log(import.meta.env.VITE_URL_API)
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
