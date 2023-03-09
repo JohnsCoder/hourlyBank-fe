@@ -9,7 +9,7 @@ import {
   UPDATE_PROJECT,
 } from "../../queries/project.query";
 import { AUTHENTICATE } from "../../queries/user.query";
-import Cookies from "../../lib/cookies";
+import Cookies from "../../utils/cookies";
 
 interface DialogContext {
   createDialog: IDisplay;

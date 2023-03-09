@@ -3,7 +3,7 @@ import type { Property as CSS } from "csstype";
 import { QueryResult, useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../../queries/project.query";
 import { AUTHENTICATE } from "../../queries/user.query";
-import Cookies from "../../lib/cookies";
+import Cookies from "../../utils/cookies";
 
 interface CardContext {
   getProjects: Project[] | undefined;

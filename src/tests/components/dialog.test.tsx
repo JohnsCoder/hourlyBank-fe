@@ -18,7 +18,7 @@ import CardProvider from "../../contexts/components/card.context";
 import Login from "../../pages/login";
 import Homepage from "../../pages/homepage";
 import { act } from "react-dom/test-utils";
-import { delay } from "../../lib/delay";
+import { delay } from "../../utils/delay";
 import HomepageProvider from "../../contexts/pages/homepage.context";
 
 const client = new ApolloClient({

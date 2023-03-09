@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "../../lib/cookies";
+import Cookies from "../../utils/cookies";
 import type { Property as CSS } from "csstype";
 
 interface HomepageContext {

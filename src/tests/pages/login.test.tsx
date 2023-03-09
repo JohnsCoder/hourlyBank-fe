@@ -15,7 +15,7 @@ import { ApolloClient, HttpLink } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
 import fetch from "cross-fetch";
 import { act } from "react-dom/test-utils";
-import { delay } from "../../lib/delay";
+import { delay } from "../../utils/delay";
 import HomepageProvider from "../../contexts/pages/homepage.context";
 
 const client = new ApolloClient({

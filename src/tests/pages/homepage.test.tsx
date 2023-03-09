@@ -11,7 +11,7 @@ import { ApolloClient, HttpLink } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
 import fetch from "cross-fetch";
 import Landing from "../../pages/landing";
-import { delay } from "../../lib/delay";
+import { delay } from "../../utils/delay";
 import { act } from "react-dom/test-utils";
 import Login from "../../pages/login";
 import LoginProvider from "../../contexts/pages/login.context";

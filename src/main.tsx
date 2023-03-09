@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client/react/";
 import Paths from "./routes";
-import { client } from "./lib/apollo";
+import { client } from "./utils/apollo";
 import AuthProvider from "./contexts/auth.context";
 
 ReactDOM.render(

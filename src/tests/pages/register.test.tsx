@@ -11,7 +11,7 @@ import { InMemoryCache } from "@apollo/client/cache";
 import fetch from "cross-fetch";
 import Login from "../../pages/login";
 import { act } from "react-dom/test-utils";
-import { delay } from "../../lib/delay";
+import { delay } from "../../utils/delay";
 import Landing from "../../pages/landing";
 
 const client = new ApolloClient({

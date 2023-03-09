@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "../../lib/cookies";
+import Cookies from "../../utils/cookies";
 import { GET_USER } from "../../queries/user.query";
 
 type User = {
