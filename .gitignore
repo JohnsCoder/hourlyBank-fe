@@ -5,3 +5,4 @@ dist-ssr
 *.local
 hourlybank_frames
 /coverage
+.env
