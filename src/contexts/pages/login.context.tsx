@@ -34,13 +34,14 @@ export default function LoginProvider({ children }: { children: ReactNode }) {
   }
 
   const navigate = useNavigate();
+
   function login() {
     if ([value?.email, value?.password].includes(undefined)) {
       alert("É preciso preencher todos os campos");
       return;
     }
     refetch().then(({ data }) => {
-      if (data["GetUser"].code > 202) {
+      if (data["GetUser"].message === "email invalido") {
         alert(data["GetUser"].message);
         return;
       }

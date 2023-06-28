@@ -5,7 +5,6 @@ const CREATE_USER = gql`
     CreateUser(username: $username, email: $email, password: $password) {
       message
       status
-      code
     }
   }
 `;
@@ -18,7 +17,6 @@ const GET_USER = gql`
       }
       message
       status
-      code
     }
   }
 `;
@@ -27,7 +25,7 @@ const AUTHENTICATE = gql`
   query Auth($token: String!) {
     Auth(token: $token) {
       message
-      code
+
       status
       payload {
         id

@@ -20,7 +20,7 @@ const CREATE_PROJECT = gql`
       price: $price
     ) {
       message
-      code
+
       status
     }
   }
@@ -49,7 +49,7 @@ const GET_PROJECT = gql`
       }
       ... on Message {
         message
-        code
+
         status
       }
     }
@@ -60,7 +60,7 @@ const UPDATE_PROJECT = gql`
   mutation UpdateProject($id: String!, $hour: Float!, $todo: String!) {
     UpdateProject(id: $id, hour: $hour, todo: $todo) {
       message
-      code
+
       status
     }
   }
@@ -69,7 +69,7 @@ const FINISH_PROJECT = gql`
   mutation FinishProject($id: String!) {
     FinishProject(id: $id) {
       message
-      code
+
       status
     }
   }
@@ -78,7 +78,6 @@ const FINISH_PROJECT = gql`
 const DELETE_PROJECT = gql`
   mutation DeleteProject($id: String!) {
     DeleteProject(id: $id) {
-      code
       message
       status
     }

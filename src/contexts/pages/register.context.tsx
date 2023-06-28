@@ -12,7 +12,6 @@ type User = {
 type CreateUser = {
   message: String;
   status: String;
-  code: Number;
 };
 
 interface RegisterContext {
@@ -55,7 +54,7 @@ export default function RegisterProvider({
         return;
       }
       navigate("/login");
-    });
+    }).catch(err => console.log(err))
   }
   return (
     <RegisterContext.Provider value={{ register, handleValue }}>
