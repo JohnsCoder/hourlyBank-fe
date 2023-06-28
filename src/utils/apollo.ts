@@ -1,7 +1,6 @@
 import { ApolloClient } from "@apollo/client";
 import { InMemoryCache } from "@apollo/client/cache";
-
 export const client = new ApolloClient({
-  uri: import.meta.env.VITE_API_URL as string,
+  uri: "https://hourlybank.onrender.com/",
   cache: new InMemoryCache({}),
 });
